@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Revio — Car Finance Website
 
-## Getting Started
+A customer-facing website for **Revio**, a UK car finance platform. Visitors can browse cars from partner dealerships, apply for finance, value and sell their car, and get in touch, all in one place.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Car listings** with search and filtering, plus a detail page for each vehicle
+- **Dealer pages** showing each partner dealership and its stock
+- **Finance application form** that sends leads straight to the database
+- **"Sell your car" wizard** with automatic vehicle lookup by registration number (DVLA Vehicle Enquiry Service)
+- **Cash purchase option** alongside finance
+- **Dealer partnership sign-up** for new dealerships
+- **Complaints, contact and FAQ pages**
+- **UK-compliant privacy, cookie and terms pages**, with a cookie consent banner and saved preferences
+- Responsive layout with scroll animations
+
+## Tech stack
+
+- **Next.js** (App Router) and **TypeScript**
+- **Supabase** (PostgreSQL) for car, dealer and lead data
+- **Next.js API routes** for form submissions and vehicle lookup
+- **DVLA VES API** for registration lookups
+- CSS / PostCSS
+
+## Project structure
+
+```
+src/
+  app/(site)/     → public pages (home, cars, finance, sell, partner, policies…)
+  app/api/        → API routes (finance, sell, partner, vehicle-lookup)
+  components/     → reusable UI (CarCard, FinanceForm, SellWizard, CookieConsent…)
+  lib/            → data access, Supabase clients, helpers
+supabase/         → SQL for database tables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file with your own keys:
 
-## Learn More
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+DVLA_VES_API_KEY=
+```
 
-To learn more about Next.js, take a look at the following resources:
+Then open http://localhost:3000.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The companion admin dashboard is in [Revio-Admin-Dashboard](https://github.com/hanianawazkhan001-ops/Revio-Admin-Dashboard).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built by **Hania**.
