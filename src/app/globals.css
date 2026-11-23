@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+:root {
+  --revio-black: #090909;
+  --revio-muted: #73767c;
+  --revio-line: #e2e2de;
+  --revio-paper: #f5f5f2;
+  --revio-yellow: #efc319;
+  --revio-yellow-deep: #cf9f00;
+}
+
+@theme inline {
+  --color-revio-black: var(--revio-black);
+  --color-revio-muted: var(--revio-muted);
+  --color-revio-line: var(--revio-line);
+  --color-revio-paper: var(--revio-paper);
+  --color-revio-yellow: var(--revio-yellow);
+  --color-revio-yellow-deep: var(--revio-yellow-deep);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: #ffffff;
+  color: var(--revio-black);
+}
+
+/* ---- Scroll-reveal ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---- Tactile buttons/links ---- */
+.btn-tactile {
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+.btn-tactile:hover {
+  transform: translateY(-1px);
+}
+.btn-tactile:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* ---- Crossfade on mount (paired with a changing React key) ---- */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in-up {
+  animation: fade-in-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---- Smooth accordion expand ---- */
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.accordion-panel.is-open {
+  grid-template-rows: 1fr;
+}
+.accordion-panel > div {
+  overflow: hidden;
+}
+
+/* ---- Admin dashboard theme (dark default, light opt-in) ---- */
+.admin-shell {
+  --a-bg: #0f0f10;
+  --a-header-bg: #0a0a0a;
+  --a-surface: #111214;
+  --a-surface-2: #18191c;
+  --a-surface-2-hover: #1d1e20;
+  --a-border: #2b2d31;
+  --a-text: #ffffff;
+  --a-text-muted: #9da0a6;
+  --a-text-faint: #8a8d91;
+  --a-text-fainter: #6c6f75;
+  --a-text-body: #c9cbcf;
+  --a-warn-bg: #3a1f17;
+  --a-warn-bg-solid: #241410;
+  --a-warn-border: #8a3b23;
+  --a-warn-border-hover: #9a4428;
+  --a-warn-text: #f5b199;
+  --a-good-bg: #1b3a22;
+  --a-good-text: #8fd9a0;
+  background: var(--a-bg);
+  color-scheme: dark;
+}
+.admin-shell[data-theme="light"] {
+  --a-bg: #f5f5f2;
+  --a-header-bg: #ffffff;
+  --a-surface: #ffffff;
+  --a-surface-2: #f0f0ec;
+  --a-surface-2-hover: #e6e6e1;
+  --a-border: #dcdcd7;
+  --a-text: #101010;
+  --a-text-muted: #6b6e74;
+  --a-text-faint: #85878c;
+  --a-text-fainter: #9a9da3;
+  --a-text-body: #35373b;
+  --a-warn-bg: #fbefec;
+  --a-warn-bg-solid: #f5dcd5;
+  --a-warn-border: #c9694a;
+  --a-warn-border-hover: #b85d3f;
+  --a-warn-text: #8a3b23;
+  --a-good-bg: #eaf3ec;
+  --a-good-text: #2f6b41;
+  color-scheme: light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .btn-tactile,
+  .btn-tactile:hover,
+  .btn-tactile:active {
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
